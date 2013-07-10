@@ -89,7 +89,9 @@ async.each(Object.keys(servers), function (name, done){
         if (err) { if (logErrors) { console.error(name, err) }
             query.close()
             stats[name]= err
-            done(null)
+            process.nextTick(function () {
+                done(null)
+            })
         } else {
             query.basic_stat(function (err, stat) {
                 query.close()
@@ -97,7 +99,9 @@ async.each(Object.keys(servers), function (name, done){
                     stats[name]= err
                 }
                 stats[name]= stat
-                done(null)
+                process.nextTick(function () {
+                    done(null)
+                })
             })
         }
     })
