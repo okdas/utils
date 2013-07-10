@@ -1,0 +1,16 @@
+{
+  "name": "streamcraft-query",
+  "author": "Teh Freak",
+  "version": "0.0.1",
+  "main":"index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+      "node": ">=v0.6.2"
+  },
+  "devDependencies": {
+    "async": "latest",
+    "mcquery": "latest"
+  }
+}
