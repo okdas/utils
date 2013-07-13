@@ -1,7 +1,8 @@
 var statsUrl= '/json/stats.json';
+var refreshInterval= 15000;
 
 $(function () {
-    var $stats= $('#right .bloc1 > .bloc12').html('');
+    var $stats= $('#right .bloc1 > .bloc12');
 
     var renderAlive= function (server) {
         var percent= (server.stat.maxplayers / 100) * server.stat.numplayers;
@@ -49,36 +50,44 @@ $(function () {
         );
     }
 
-    $.get(statsUrl, function(servers) {
+    var refresh= function () {
+        $.get(statsUrl, function(servers) {
+            $stats.empty();
 
-        var total= {
-            numplayers: 0,
-            maxplayers: 0
-        };
+            var total= {
+                numplayers: 0,
+                maxplayers: 0
+            };
 
-        for (var i in servers) {
-            if (!servers.hasOwnProperty(i)) return;
+            for (var i in servers) {
+                if (!servers.hasOwnProperty(i)) return;
 
-            var server= servers[i];
-            if (server.title) {
-                if (server.stat) {
-                    var stat= server.stat;
-                    total.numplayers= total.numplayers + stat.numplayers;
-                    total.maxplayers= total.maxplayers + stat.maxplayers;
-                    $stats.append(
-                        renderAlive(server)
-                    )
-                }
-                if (server.error) {
-                    $stats.append(
-                        renderError(server)
-                    )
+                var server= servers[i];
+                if (server.title) {
+                    if (server.stat) {
+                        var stat= server.stat;
+                        total.numplayers= total.numplayers + stat.numplayers;
+                        total.maxplayers= total.maxplayers + stat.maxplayers;
+                        $stats.append(
+                            renderAlive(server)
+                        )
+                    }
+                    if (server.error) {
+                        $stats.append(
+                            renderError(server)
+                        )
+                    }
                 }
             }
-        }
 
-        $stats.prepend(
-            renderTotal(total)
-        )
-    });
+            $stats.prepend(
+                renderTotal(total)
+            );
+        });
+    }
+
+    refresh();
+    setInterval(function () {
+        refresh();
+    }, refreshInterval)
 })
