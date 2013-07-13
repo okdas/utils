@@ -2,63 +2,63 @@ var fs= require('fs')
 var async= require('async')
 var Query= require('mcquery')
 
-var statsFilename= './result/stats.json'
+var statsFilename= '/home/www/proba.streamcraft.net/json/stats.json'
 var logErrors= false
 
 var servers= {
 
     'SandBox 1': {
-        host:'srv1.streamcraft.net', port:11114
+        host:'srv1.streamcraft.net', port:11111
     },
     'SandBox 2': {
-        host:'srv1.streamcraft.net', port:22224
+        host:'srv1.streamcraft.net', port:22222
     },
 
     'NanoTech PvE 1': {
-        host:'srv2.streamcraft.net', port:11114
+        host:'srv2.streamcraft.net', port:11111
     },
     'NanoTech PvP 1': {
-        host:'srv2.streamcraft.net', port:22224
+        host:'srv2.streamcraft.net', port:22222
     },
 
     'NanoTech PvE 2': {
-        host:'srv3.streamcraft.net', port:11114
+        host:'srv3.streamcraft.net', port:11111
     },
     'NanoTech PvP 2': {
-        host:'srv3.streamcraft.net', port:22224
+        host:'srv3.streamcraft.net', port:22222
     },
 
     'NanoTech PvE 3': {
-        host:'srv4.streamcraft.net', port:11114
+        host:'srv4.streamcraft.net', port:11111
     },
     'NanoTech PvP 3': {
-        host:'srv4.streamcraft.net', port:22224
+        host:'srv4.streamcraft.net', port:22222
     },
 
     'NanoTech PvE 4': {
-        host:'srv9.streamcraft.net', port:33334
+        host:'srv9.streamcraft.net', port:33333
     },
     'NanoTech PvP 4': {
         host:'srv8.streamcraft.net', port:33334
     },
 
     'MagicRPG 1': {
-        host:'srv5.streamcraft.net', port:11114
+        host:'srv5.streamcraft.net', port:11111
     },
     'MagicRPG 2': {
-        host:'srv5.streamcraft.net', port:22224
+        host:'srv5.streamcraft.net', port:22222
     },
     'MagicRPG 3': {
-        host:'srv6.streamcraft.net', port:11114
+        host:'srv6.streamcraft.net', port:11111
     },
     'MagicRPG 4': {
-        host:'srv6.streamcraft.net', port:22224
+        host:'srv6.streamcraft.net', port:22222
     },
     'MagicRPG 5': {
-        host:'srv7.streamcraft.net', port:11114
+        host:'srv7.streamcraft.net', port:11111
     },
     'MagicRPG 6': {
-        host:'srv7.streamcraft.net', port:22224
+        host:'srv7.streamcraft.net', port:22222
     },
     'MagicRPG 7': {
         host:'srv8.streamcraft.net', port:11114
@@ -68,10 +68,10 @@ var servers= {
     },
 
     'MagicRPG PvE 1': {
-        host:'srv9.streamcraft.net', port:22225
+        host:'srv9.streamcraft.net', port:11111
     },
     'MagicRPG PvE 2': {
-        host:'srv9.streamcraft.net', port:22224
+        host:'srv9.streamcraft.net', port:22222
     },
 
     'Spleef': {
