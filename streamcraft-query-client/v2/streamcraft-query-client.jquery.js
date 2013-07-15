@@ -40,6 +40,21 @@ $(function () {
         );
     }
 
+    var renderTotal= function (total) {
+        var width= calcWidth(total.numplayers, total.maxplayers);
+        return $('<div id="server_monitor_body"/>').append(
+            $('<h5/>').html('Общий онлайн&nbsp;')
+        ).append(
+            $('<div id="server_monitor_panel" style="width:80px;"/>').append(
+                $('<div class="ssp_status_line"/>').css({
+                    width: width
+                })
+            ).append(
+                $('<span class="ssp_status_info"/>').html(total.numplayers +' / '+ total.maxplayers)
+            )
+        );
+    }
+
     var refresh= function () {
         $.get(statsUrl, function(servers) {
             $stats.empty();
@@ -70,9 +85,9 @@ $(function () {
                 }
             }
 
-            //$stats.prepend(
-            //    renderTotal(total)
-            //);
+            $stats.prepend(
+                renderTotal(total)
+            );
         });
     }
 
