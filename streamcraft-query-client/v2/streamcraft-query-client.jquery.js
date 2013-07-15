@@ -52,6 +52,8 @@ $(function () {
             ).append(
                 $('<span class="ssp_status_info"/>').html(total.numplayers +' / '+ total.maxplayers)
             )
+        ).append(
+            $('<hr/>')
         );
     }
 
