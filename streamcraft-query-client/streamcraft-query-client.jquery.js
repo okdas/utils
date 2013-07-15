@@ -4,9 +4,15 @@ var refreshInterval= 15000;
 $(function () {
     var $stats= $('#right .bloc1 > .bloc12');
 
+    var fullWidth= 80;
+    var calcWidth= function (num, max) {
+        var percent= num / (max / 100);
+        if (percent > 100) { percent= 100 }
+        return Math.round((fullWidth / 100) * percent);
+    }
+
     var renderAlive= function (server) {
-        var percent= (server.stat.maxplayers / 100) * server.stat.numplayers;
-        var width= Math.round((80 / 100) * percent);
+        var width= calcWidth(server.stat.numplayers, server.stat.maxplayers);
         return $('<div class="bloc8"/>').append(
             $('<b/>').html(server.title)
         ).append(
@@ -31,8 +37,7 @@ $(function () {
     }
 
     var renderTotal= function (total) {
-        var percent= (total.maxplayers / 100) * total.numplayers;
-        var width= Math.round((80 / 100) * percent);
+        var width= calcWidth(total.numplayers, total.maxplayers);
         return $('<div class="bloc121"/>').append(
             $('<div class="bloc81"/>').append(
                 $('<b>Общий онлайн</b>')
