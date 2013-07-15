@@ -42,7 +42,7 @@ $(function () {
 
     var renderTotal= function (total) {
         var width= calcWidth(total.numplayers, total.maxplayers);
-        return $('<div id="server_monitor_body"/>').append(
+        return $('<div id="server_monitor_body" style="display:block" />').append(
             $('<h5/>').html('Общий онлайн&nbsp;')
         ).append(
             $('<div id="server_monitor_panel" style="width:80px;"/>').append(
@@ -52,8 +52,6 @@ $(function () {
             ).append(
                 $('<span class="ssp_status_info"/>').html(total.numplayers +' / '+ total.maxplayers)
             )
-        ).append(
-            $('<hr/>')
         );
     }
 
