@@ -42,7 +42,7 @@ $(function () {
 
     var renderTotal= function (total) {
         var width= calcWidth(total.numplayers, total.maxplayers);
-        return $('<div id="server_monitor_body" style="display:block" />').append(
+        return $('<div id="server_monitor_body" style="display:block; margin-top:0;"/>').append(
             $('<h5/>').html('Общий онлайн&nbsp;')
         ).append(
             $('<div id="server_monitor_panel" style="width:80px;"/>').append(
