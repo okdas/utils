@@ -1,0 +1,31 @@
+{
+    "name": "apiserver",
+    "version": "0.0.1",
+
+    "config": {
+        "logfile": "./main.log",
+        "pidfile": "./main.pid",
+
+        "interval": "10",
+
+        "output":"./st.json",
+
+        "port": 8000,
+        "auth": {
+            "secret": "kitty",
+            "root": {
+                "username": "root",
+                "password": "toor"
+            }
+        }
+    },
+
+    "scripts": {
+        "start": "node node.js"
+    },
+
+    "dependencies": {
+        "express": "latest",
+        "jade": "latest"
+    }
+}
