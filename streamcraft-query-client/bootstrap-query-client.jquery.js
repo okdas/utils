@@ -27,12 +27,12 @@ $(function () {
     }
 
     var renderError= function (server) {
-        return $('<div class="stat stat-server"/>').append(
+        return $('<div class="stat stat-server stat-server-error"/>').append(
             $('<div class="stat-title"/>').html(server.title)
         ).append(
-            $('<div class="progress progress-warning progress-striped active"/>').append(
+            $('<div class="progress progress-danger"/>').append(
                 $('<div class="bar"/>').css({
-                    width: 0
+                    width: '100%'
                 }).html(
                     'offline'
                 )
@@ -69,25 +69,32 @@ $(function () {
 
                 var server= servers[i];
                 if (server.title) {
-                    if (server.stat) {
-                        var stat= server.stat;
-                        total.numplayers= total.numplayers + stat.numplayers;
-                        total.maxplayers= total.maxplayers + stat.maxplayers;
-                        $stats.append(
-                            renderAlive(server)
-                        )
-                    }
-                    if (server.error) {
-                        $stats.append(
-                            renderError(server)
-                        )
+                    try {
+                        if (server.stat) {
+                            var stat= server.stat;
+                            total.numplayers= total.numplayers + stat.numplayers;
+                            total.maxplayers= total.maxplayers + stat.maxplayers;
+                            $stats.append(
+                                renderAlive(server)
+                            );
+                        }
+                        if (server.error) {
+                            $stats.append(
+                                renderError(server)
+                            );
+                        }
+                    } catch (e) {
+                        console.error(e);
                     }
                 }
             }
-
-            $stats.prepend(
-                renderTotal(total)
-            );
+            try {
+                $stats.prepend(
+                    renderTotal(total)
+                );
+            } catch (e) {
+                console.error(e);
+            }
         });
     }
 
