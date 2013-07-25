@@ -1,0 +1,37 @@
+extends ../layout
+
+block content
+    header
+        .navbar.navbar-static-top
+            .container
+                a.navbar-brand(href='/')
+                    span FLYDEV
+                    sup v0.1
+                .nav-collapse.collapse
+                    ul.nav.navbar-nav.pull-right
+                        li: a(href='#/login') Контрольно-пропускной пункт
+
+
+    .container
+        .row
+            .col-12
+                hr
+                h1 FLYDEV JET ENGINE
+                hr
+
+        .row
+            .col-12
+                div(ng-init= 'status= #{status}')
+                    .row(ng-repeat='server in status')
+                        .col-4= '{{ server.title }}'
+                        .col-4= '{{ server.host }}:{{ server.port }}'
+                        .col-4= '{{ server.stat.numplayers }}/{{ server.stat.maxplayers }}'
+
+
+
+    footer
+        .navbar.navbar-fixed-bottom
+            .container
+                .by
+                    a(href='//awesome39.com') При поддержке 
+                        abbr AWESOME{39}

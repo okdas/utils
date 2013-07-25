@@ -11,12 +11,12 @@ output= 'app/status.json'
 
 
 exports.servers= (req, res, next) ->
-    return res.send 400 if not fs.existsSync config
 
-    servers= JSON.parse fs.readFileSync config
-    res.send 200
+    fs.readFile output, 'utf-8', (err, data) ->
+        return res.send err if err
+        res.locals.status= data
 
-
+        res.render 'Status/servers.jade'
 
 
 
@@ -28,7 +28,8 @@ exports.checkStatus= (req, res, next) ->
 
 
 exports.startStatus= (req, res, next) ->
-    return res.send 400 if Status.isWorking()
+    if Status.isWorking()
+        return res.send 'is working', 400
 
     Status.start config, output, req.params.interval
     res.send 200
@@ -36,7 +37,8 @@ exports.startStatus= (req, res, next) ->
 
 
 exports.stopStatus= (req, res, next) ->
-    return res.send 400 if not Status.isWorking()
+    if not Status.isWorking()
+        return res.send 'is not working', 400
 
     Status.stop()
     res.send 200

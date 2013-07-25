@@ -3,6 +3,8 @@ html(ng-app)
 
     head
 
+        meta(name='viewport',content='width=device-width, initial-scale=1.0')
+
         link(rel='stylesheet', href='/css/bootstrap.css')
         link(rel='stylesheet', href='/css/bootcraft.css')
         link(rel='stylesheet', href='/css/font-awesome.min.css')
@@ -11,4 +13,5 @@ html(ng-app)
         script(src='/js/libs/angularjs/1.1.5/angular.min.js')
 
     body
-        h1= 'hello'
+        block content
+
