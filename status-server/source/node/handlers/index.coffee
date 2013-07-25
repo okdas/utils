@@ -7,3 +7,9 @@ module.exports= (app) ->
 
     app.get '/status', Status.servers
 
+    app.get '/status/check', Status.checkStatus
+
+    app.get '/status/start/interval/:interval', Status.startStatus
+    app.get '/status/stop', Status.stopStatus
+
+
