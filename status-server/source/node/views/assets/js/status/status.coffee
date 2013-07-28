@@ -7,18 +7,14 @@ app.factory 'Stats', ($resource) ->
 
 
 app.factory 'Server', ($resource) ->
-    Server= $resource '/api/v1/status/server/', {},
+    Server= $resource '/api/v1/status/server/:serverId', {},
         create:
             method: 'post'
-            params:
-                title: '@title'
-                host: '@host'
-                port: '@port'
 
         delete:
             method: 'delete'
             params:
-                id: '@id'
+                serverId: '@id'
 
     return Server
 
