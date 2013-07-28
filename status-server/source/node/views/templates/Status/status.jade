@@ -1,7 +1,7 @@
 extends ../layout
 
 block script
-    script(src='/js/status/servers.js')
+    script(src='/js/status/status.js')
 
 
 block content
@@ -25,8 +25,8 @@ block content
 
         .row
             .col-12.well
-                div(ng-init= 'status= #{status}', ng-controller='CtrlServers')
-                    .row(ng-repeat='server in status',style='padding-bottom:10px')
+                div(ng-controller='ServersCtrl')
+                    .row(ng-repeat='server in stats',style='padding-bottom:10px')
                         .col-4= '{{ server.title }}'
                         .col-4= '{{ server.host }}:{{ server.port }}'
                         .col-2= '{{ server.stat.numplayers }}/{{ server.stat.maxplayers }}'
@@ -37,14 +37,14 @@ block content
                     .row
                         form(ng-submit='addServer()')
                             .col-4
-                                input.col-8(type='text')
+                                input.col-8(type='text',placeholder='name',ng-model='title')
                             .col-4
-                                input.col-6(type='text')
+                                input.col-6(type='text',placeholder='host',ng-model='host')
                                 span.col-1=':'
-                                input.col-3(type='text')
+                                input.col-3(type='text',placeholder='port',ng-model='port')
                             .col-2
                             .col-2
-                                button.btn.btn-primary= 'Add'
+                                button.btn.btn-primary(type='submit')= 'Add'
 
 
 

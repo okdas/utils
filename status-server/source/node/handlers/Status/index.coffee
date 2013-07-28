@@ -10,16 +10,12 @@ output= 'app/stats.json'
 
 
 
-exports.servers= (req, res, next) ->
-    fs.readFile output, 'utf-8', (err, data) ->
-        return res.send err if err
-        res.locals.status= data
-
-        res.render 'Status/servers.jade'
+exports.status= (req, res, next) ->
+    res.render 'Status/status.jade'
 
 
 
-exports.checkStatus= (req, res, next) ->
+exports.checkStats= (req, res, next) ->
     if not fs.existsSync output
 
         Status.check config, output, (out) ->
@@ -47,4 +43,18 @@ exports.stopStatus= (req, res, next) ->
 
     do Status.stop
     res.send 200
+
+
+
+
+
+exports.addServer= (req, res, next) ->
+    servers= JSON.parse fs.readFileSync config
+    servers.push
+        title: req.body.title
+        host: req.body.host
+        port: req.body.port
+
+    console.log servers
+    res.send req.body
 
