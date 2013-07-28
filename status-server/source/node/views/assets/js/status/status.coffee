@@ -7,7 +7,7 @@ app.factory 'Stats', ($resource) ->
 
 
 app.factory 'Server', ($resource) ->
-    Server= $resource '/api/v1/status/server/:serverId', {},
+    Server= $resource '/api/v1/status/servers/:serverId', {},
         create:
             method: 'post'
 
