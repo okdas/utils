@@ -27,13 +27,14 @@ block content
             .col-12.well
                 div(ng-controller='ServersCtrl')
                     .row(ng-repeat='server in stats',style='padding-bottom:10px')
-                        .col-4= '{{ server.title }}'
-                        .col-4= '{{ server.host }}:{{ server.port }}'
-                        .col-2= '{{ server.stat.numplayers }}/{{ server.stat.maxplayers }}'
-                        .col-2
-                            button.btn.btn-danger= 'Remove'
+                        form(ng-submit='deleteServer()')
+                            input(type='hidden',ng-model='id',value='{{ server.id }}')
+                            .col-4= '{{ server.title }}'
+                            .col-4= '{{ server.host }}:{{ server.port }}'
+                            .col-2= '{{ server.stat.numplayers }}/{{ server.stat.maxplayers }}'
+                            .col-2
+                                button.btn.btn-danger(type='submit')= 'Remove'
 
-                div
                     .row
                         form(ng-submit='addServer()')
                             .col-4

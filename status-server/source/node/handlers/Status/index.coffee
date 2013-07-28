@@ -55,6 +55,12 @@ exports.addServer= (req, res, next) ->
         host: req.body.host
         port: req.body.port
 
-    console.log servers
+    fs.writeFile config, JSON.stringify(servers, null, 4), (err) ->
+        return res.send err, 400 if err
+        return res.send 200
+
+
+
+exports.deleteServer= (req, res, next) ->
     res.send req.body
 
