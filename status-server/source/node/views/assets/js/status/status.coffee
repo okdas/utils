@@ -19,13 +19,18 @@ app.factory 'Server', ($resource) ->
     return Server
 
 
+
+
+
 app.filter 'ServerFilter', () ->
     return (servers) ->
-        filtered= [];
+        filtered= []
         angular.forEach servers, (server) ->
             if server.id?
                 filtered.push server
         return filtered
+
+
 
 
 
@@ -36,12 +41,13 @@ app.controller 'ServersCtrl', ($scope, Stats, Server) ->
 
     $scope.addServer= ->
 
-        Server.create {
+        Server.create
             title: $scope.title
             host: $scope.host
             port: $scope.port
-        }, ->
+        , ->
             $scope.stats.push
+                id: $scope.id
                 title: $scope.title
                 host: $scope.host
                 port: $scope.port
@@ -50,23 +56,14 @@ app.controller 'ServersCtrl', ($scope, Stats, Server) ->
             $scope.host= ''
             $scope.port= ''
         , ->
-            alert 'Ощибка создания'
+            alert 'Ошибка создания'
 
 
-    $scope.deleteServer= ->
+    $scope.deleteServer= (server) ->
         $scope.stats.map (val, i) ->
-            console.log val.id, $scope.id
-            if val.id == $scope.id
-                console.log '!!!'
-                $scope.stats= $scope.stats.splice --i, 1
-
-        ###
-        Server.delete {
-            id: $scope.id
-        }, ->
-            $scope.stats.map (val, i) ->
-                if val.id == $scope.id
-                    console.log '!!!'
-                    $scope.stats= $scope.stats.splice --i, 1
-        ###
+            if val.id == server.id
+                Server.delete
+                    serverId: server.id
+                , ->
+                    $scope.stats.splice i, 1
 

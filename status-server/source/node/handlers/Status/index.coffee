@@ -55,6 +55,7 @@ exports.addServer= (req, res, next) ->
         host: req.body.host
         port: req.body.port
 
+    # записываем конфиг с новым сервером
     fs.writeFile config, JSON.stringify(servers, null, 4), (err) ->
         return res.send err, 400 if err
         return res.send 200
@@ -62,5 +63,15 @@ exports.addServer= (req, res, next) ->
 
 
 exports.deleteServer= (req, res, next) ->
-    res.send req.body
+    servers= JSON.parse fs.readFileSync config
+
+    servers.map (val, i) ->
+        if val.id == (+req.params.serverId)
+            # удаляем лишний сервер из конфига
+            servers.splice i, 1
+
+            # пишем новый конфиг без удаленного сервера
+            fs.writeFile config, JSON.stringify(servers, null, 4), (err) ->
+                return res.send err, 400 if err
+                return res.send 200
 

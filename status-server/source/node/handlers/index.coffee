@@ -8,12 +8,11 @@ module.exports= (app) ->
     app.get '/status', Status.status
 
 
-    app.post '/api/v1/status/server', Status.addServer
-    app.delete '/api/v1/status/server', Status.deleteServer
+    app.post '/api/v1/status/servers', Status.addServer
+    app.delete '/api/v1/status/servers/:serverId', Status.deleteServer
 
     app.get '/api/v1/status/stats', Status.checkStats
 
     app.get '/api/v1/status/start/interval/:interval', Status.startStatus
     app.get '/api/v1/status/stop', Status.stopStatus
-
 

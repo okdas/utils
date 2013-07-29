@@ -1,4 +1,4 @@
-- { title: SandBox 1, host: srv1.streamcraft.net, port: 11111 }
-- { title: SandBox 2, host: srv1.streamcraft.net, port: 22222 }
-- { title: NanoTech PvE 1, host: srv2.streamcraft.net, port: 11111 }
-- { title: NanoTech PvP 1, host: srv2.streamcraft.net, port: 22222 }
+- { id: 0, title: SandBox 1, host: srv1.streamcraft.net, port: 11111 }
+- { id: 1, title: SandBox 2, host: srv1.streamcraft.net, port: 22222 }
+- { id: 2, title: NanoTech PvE 1, host: srv2.streamcraft.net, port: 11111 }
+- { id: 3, title: NanoTech PvP 1, host: srv2.streamcraft.net, port: 22222 }
