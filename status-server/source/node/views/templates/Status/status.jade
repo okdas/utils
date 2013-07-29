@@ -26,6 +26,10 @@ block content
         .row
             .col-12.well
                 div(ng-controller='ServersCtrl')
+                    ul.servers
+                        li(ng-repeat='server in servers')
+                            span {{server.title}}
+                            button(ng-click='delete(server)') Удалить
                     .row(ng-repeat='server in stats',style='padding-bottom:10px')
                         form(ng-submit='deleteServer()')
                             input(type='hidden',ng-model='id',value='{{ server.id }}')
