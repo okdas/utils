@@ -19,6 +19,13 @@ app.factory 'Server', ($resource) ->
     return Server
 
 
+app.filter 'ServerFilter', () ->
+    return (servers) ->
+        filtered= [];
+        angular.forEach servers, (server) ->
+            if server.id?
+                filtered.push server
+        return filtered
 
 
 
