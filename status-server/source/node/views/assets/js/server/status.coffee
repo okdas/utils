@@ -1,5 +1,5 @@
-app= angular.module 'app', ['ngResource'], ($routeProvider) ->
-    $routeProvider.when '#/servers/:serverId',
+app= angular.module 'app', ['ngResource'], ($routeProvider, $locationProvider) ->
+    $routeProvider.when '/servers/:serverId',
         templateUrl: 'servers/'
         controller: 'GetServersCtrl'
 
@@ -38,9 +38,9 @@ app.filter 'ServerFilter', () ->
 
 
 
+
 app.controller 'GetServersCtrl', ($routeParams) ->
     @$routeParams= $routeParams
-
 
 
 app.controller 'ServersCtrl', ($scope, StatusDaemon, Server) ->
