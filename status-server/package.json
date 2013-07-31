@@ -17,7 +17,7 @@
   },
 
   "scripts": {
-    "prestart": "grunt.cmd",
+    "prestart": "grunt",
     "start": "node app/node.js"
   },
 

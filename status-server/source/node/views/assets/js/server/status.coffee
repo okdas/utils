@@ -1,8 +1,13 @@
-app= angular.module 'app', ['ngResource']
+app= angular.module 'app', ['ngResource'], ($routeProvider) ->
+    $routeProvider.when '#/servers/:serverId',
+        templateUrl: 'servers/'
+        controller: 'GetServersCtrl'
 
 
 
-app.factory 'Stats', ($resource) ->
+
+
+app.factory 'StatusDaemon', ($resource) ->
     return $resource '/api/v1/status/stats'
 
 
@@ -33,15 +38,20 @@ app.filter 'ServerFilter', () ->
 
 
 
+app.controller 'GetServersCtrl', ($routeParams) ->
+    @$routeParams= $routeParams
 
-app.controller 'ServersCtrl', ($scope, Stats, Server) ->
-    $scope.stats= Stats.query ->
+
+
+app.controller 'ServersCtrl', ($scope, StatusDaemon, Server) ->
+    $scope.stats= StatusDaemon.query ->
         console.log 'загружено'
 
 
     $scope.addServer= ->
 
         Server.create
+            id: $scope.id
             title: $scope.title
             host: $scope.host
             port: $scope.port
@@ -66,4 +76,6 @@ app.controller 'ServersCtrl', ($scope, Stats, Server) ->
                     serverId: server.id
                 , ->
                     $scope.stats.splice i, 1
+                , ->
+                    alert 'Ошибка удаления'
 
