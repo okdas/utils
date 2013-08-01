@@ -12,7 +12,7 @@ output= 'app/stats.json'
 exports.checkStats= (req, res, next) ->
     if not fs.existsSync output
 
-        Status.check config, output, (out) ->
+        Status.check config, (out) ->
             return res.json out if out
             res.send 400
 

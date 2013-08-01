@@ -5,17 +5,6 @@ block script
 
 
 block content
-    header
-        .navbar.navbar-static-top
-            .container
-                a.navbar-brand(href='/')
-                    span FLYDEV
-                    sup v0.1
-                .nav-collapse.collapse
-                    ul.nav.navbar-nav.pull-right
-                        li: a(href='#/login') Контрольно-пропускной пункт
-
-
     .container
         .row
             .col-12
@@ -29,7 +18,7 @@ block content
 
                     .row(ng-repeat='server in stats',style='padding-bottom:10px')
                         .col-4
-                            a(href='#/server/{{ server.id }}')='{{ server.title }}'
+                            a(href='#/servers/{{ server.id }}')='{{ server.title }}'
                         .col-4= '{{ server.host }}:{{ server.port }}'
 
                         .col-2
@@ -62,22 +51,5 @@ block content
 
                     .row
                         .col-12
-                            a(href='#/servers/0')= 'zero'
-                            a(href='#/servers/1')= 'one'
-                            a(href='#/servers/2')= 'two'
-
-                    .row
-                        .col-12
                             div(ng-view)
-
-
-
-
-
-    footer
-        .navbar.navbar-fixed-bottom
-            .container
-                .by
-                    a(href='//awesome39.com') При поддержке 
-                        abbr AWESOME{39}
 

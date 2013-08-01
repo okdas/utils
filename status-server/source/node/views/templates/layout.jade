@@ -19,5 +19,18 @@ html(ng-app='app')
 
     body
 
+        block header
+            header
+                .navbar.navbar-static-top
+                    .container
+                        a.navbar-brand(href='/')
+                            span FLYDEV
+                            sup v0.1
+                        .nav-collapse.collapse
+                            ul.nav.navbar-nav.pull-right
+                                li: a(href='#/login') Контрольно-пропускной пункт
+
         block content
+
+        block footer
 

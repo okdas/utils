@@ -32,6 +32,10 @@ scripts:
 
 dependencies:
 
+    mcquery: latest
+
+    async: latest
+
     extend: latest
 
     express: latest
@@ -42,6 +46,3 @@ dependencies:
     redis: latest
 
     log: latest
-
-    orm: latest
-    mysql: latest
