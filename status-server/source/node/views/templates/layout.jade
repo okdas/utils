@@ -1,0 +1,36 @@
+!!! html
+html(ng-app='app')
+
+    head
+
+        meta(name='viewport',content='width=device-width, initial-scale=1.0')
+
+        link(rel='stylesheet', href='/css/bootstrap.min.css')
+        link(rel='stylesheet', href='/css/bootcraft.css')
+        link(rel='stylesheet', href='/css/font-awesome.min.css')
+
+        block style
+
+        script(src='/js/libs/jquery/1.7.2/jquery.min.js')
+        script(src='/js/libs/angularjs/1.1.5/angular.min.js')
+        script(src='/js/libs/angularjs/1.1.5/angular-resource.min.js')
+
+        block script
+
+    body
+
+        block header
+            header
+                .navbar.navbar-static-top
+                    .container
+                        a.navbar-brand(href='/')
+                            span FLYDEV
+                            sup v0.1
+                        .nav-collapse.collapse
+                            ul.nav.navbar-nav.pull-right
+                                li: a(href='#/login') Контрольно-пропускной пункт
+
+        block content
+
+        block footer
+

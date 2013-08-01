@@ -1,0 +1,48 @@
+name: status-server
+version: 0.0.1
+
+
+
+config:
+
+    logfile: './main.log'
+    pidfile: './main.pid'
+
+
+    default:
+
+        port: 8000
+
+
+    development:
+
+        installed: false
+
+
+    production:
+
+        installed: true
+
+
+
+scripts:
+    start: node node.js
+
+
+
+dependencies:
+
+    mcquery: latest
+
+    async: latest
+
+    extend: latest
+
+    express: latest
+    jade: latest
+
+    passport: latest
+
+    redis: latest
+
+    log: latest

@@ -1,0 +1,55 @@
+extends ../layout
+
+block script
+    script(src='/js/server/status.js')
+
+
+block content
+    .container
+        .row
+            .col-12
+                hr
+                h1 FLYDEV JET ENGINE
+                hr
+
+        .row
+            .col-12.well
+                div(ng-controller='ServersCtrl')
+
+                    .row(ng-repeat='server in stats',style='padding-bottom:10px')
+                        .col-4
+                            a(href='#/servers/{{ server.id }}')='{{ server.title }}'
+                        .col-4= '{{ server.host }}:{{ server.port }}'
+
+                        .col-2
+                            div(ng-if='server.error')
+                                div= '{{ server.error }}'
+
+                            div(ng-if='server.stat')
+                                div= '{{ server.stat.numplayers }}/{{ server.stat.maxplayers }}'
+
+                        .col-2
+                            button.btn.btn-danger(ng-click='deleteServer(server)')= 'Remove'
+
+                    .row
+                        form(ng-submit='addServer()')
+                            .col-4
+                                .row
+                                    .col-3
+                                        input.form-control(type='text',placeholder='id',ng-model='id')
+                                    .col-9
+                                        input.form-control(type='text',placeholder='name',ng-model='title')
+                            .col-4
+                                .row
+                                    .col-7
+                                        input.form-control(type='text',placeholder='host',ng-model='host')
+                                    .col-4
+                                        input.form-control(type='text',placeholder='port',ng-model='port')
+                            .col-2
+                            .col-2
+                                button.btn.btn-primary(type='submit')= 'Add'
+
+                    .row
+                        .col-12
+                            div(ng-view)
+
